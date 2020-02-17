@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Tarea2Kotlin</string>
+    <string name="title_activity_menu_principal">MenuPrincipalActivity</string>
+    <string name="title_mas_cercanos">Mas cercanos</string>
+    <string name="title_populares">Populares</string>
+    <string name="title_recomendados">Recomendados</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

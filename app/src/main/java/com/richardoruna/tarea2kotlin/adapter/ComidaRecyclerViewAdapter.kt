@@ -8,7 +8,7 @@ import com.richardoruna.tarea2kotlin.R
 import com.richardoruna.tarea2kotlin.entities.ComidaEntity
 import kotlinx.android.synthetic.main.row_item_comida.view.*
 
-class ComidaRecyclerViewAdapter(private val comidas: ArrayList<ComidaEntity>) :
+class ComidaRecyclerViewAdapter(private val comidas: List<ComidaEntity>) :
     RecyclerView.Adapter<ComidaRecyclerViewAdapter.ComidaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComidaViewHolder {
@@ -27,22 +27,15 @@ class ComidaRecyclerViewAdapter(private val comidas: ArrayList<ComidaEntity>) :
         holder.setDataComida(comidas[position])
     }
 
-    class ComidaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
+    class ComidaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imagen = itemView.imagen_imageview
         val precio = itemView.precio_textview
         val descripcionLocal = itemView.descripcion_textview
 
-        init {
-            itemView.setOnClickListener(this)
-        }
-
-        fun setDataComida(item: ComidaEntity) {2
-            imagen.setImageResource(R.drawable.ic_login)
-        }
-
-        override fun onClick(p0: View?) {
-
+        fun setDataComida(item: ComidaEntity) {
+            imagen.setImageResource(item.imagenReferencial)
+            descripcionLocal.text = item.descripcion
+            precio.text = "S/${item.precio}"
         }
 
     }

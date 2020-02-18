@@ -1,9 +1,12 @@
 package com.richardoruna.tarea2kotlin.adapter
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.richardoruna.tarea2kotlin.ComidaActivity
 import com.richardoruna.tarea2kotlin.R
 import com.richardoruna.tarea2kotlin.entities.RestauranteEntity
 import kotlinx.android.synthetic.main.row_item_restaurante.view.*
@@ -27,27 +30,30 @@ class ResturanteRecyclerViewAdapter(private val restaurantes: ArrayList<Restaura
         holder.setDataRestaurante(restaurantes[position])
     }
 
-    class RestauranteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
+    class RestauranteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         val imagen = itemView.imagen_imageview
         val nombreLocal = itemView.nombre_local_textview
         val descripcionLocal = itemView.descripcion_local_textview
         val calificacion = itemView.calificacion_ratingbar
-
-        init {
-            itemView.setOnClickListener(this)
-        }
 
         fun setDataRestaurante(item: RestauranteEntity) {
             nombreLocal.text = item.nombreLocal
             descripcionLocal.text = item.detalleLocal
             calificacion.rating = item.califificacion
 
-            imagen.setImageResource(R.drawable.ic_login)
-        }
+            imagen.setImageResource(item.imagenLocal)
 
-        override fun onClick(p0: View?) {
-
+            itemView.setOnClickListener {
+                val extra = Bundle()
+                extra.putInt(
+                    ComidaActivity.Constante.INTENT_EXTRA_ID_RESTAURANTE,
+                    item.restauranteId
+                )
+                val intent = Intent(itemView.context, ComidaActivity::class.java)
+                intent.putExtras(extra)
+                itemView.context.startActivity(intent)
+            }
         }
 
     }

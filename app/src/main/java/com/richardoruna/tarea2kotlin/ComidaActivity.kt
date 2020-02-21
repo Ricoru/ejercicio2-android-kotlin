@@ -1,6 +1,8 @@
 package com.richardoruna.tarea2kotlin
 
 import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.richardoruna.tarea2kotlin.adapter.ComidaRecyclerViewAdapter
 import com.richardoruna.tarea2kotlin.entities.ComidaEntity
@@ -21,22 +23,17 @@ class ComidaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comida)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         restauranteId = intent?.extras?.get(Constante.INTENT_EXTRA_ID_RESTAURANTE) as Int
         setData(restauranteId)
+    }
 
-//        lista_comidas_recyclerview.addItemDecoration(
-//            DividerItemDecoration(
-//                this,
-//                DividerItemDecoration.VERTICAL
-//            )
-//        )
-//
-//        lista_comidas_recyclerview.addItemDecoration(
-//            DividerItemDecoration(
-//                this,
-//                DividerItemDecoration.HORIZONTAL
-//            )
-//        )
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     fun setData(restauranteId: Int) {

@@ -20,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Usuario/Password son requeridos", Toast.LENGTH_SHORT).show()
             }
             startActivity(Intent(this, MenuPrincipalActivity::class.java))
+            finish()
         }
 
         supportActionBar?.hide()
